@@ -30,7 +30,7 @@ There are many possible sources for these kinds of data, this package includes d
 | lisiecki2005 | Lisiecki, L.E. and M.E. Raymo. 2005. A Pliocene-Pleistocene stack of 57 globally distributed benthic D18O records. Paleoceanography, Vol. 20, PA1003, <doi:10.1029/2004PA001071>. |
 | spratt2016   | Spratt, Rachel M. and Lorraine E. Lisiecki 2016. A Late Pleistocene sea level stack. Climate of the Past. Vol. 12, 1079-1092, <doi:10.5194/cp-12-1-2016>                          |
 
-Here's the structure of contents of the main datasets:
+Here's the structure of the main datasets:
 
 ``` r
 library(gslic)

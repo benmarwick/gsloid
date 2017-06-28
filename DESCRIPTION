@@ -2,7 +2,10 @@ Package: gsloid
 Type: Package
 Title: Global Sea Level and Oxygen Isotope Data
 Version: 0.1.0
-Authors@R: person("Ben", "Marwick", email = "benmarwick@gmail.com", role = c("aut", "cre"))
+Authors@R: c(person("Ben", "Marwick", email = "benmarwick@gmail.com", role = c("aut", "cre")), 
+             person("Lorraine", "Lisiecki", email = "benmarwick@gmail.com", role = c("aut")),
+             person("Rachel", "Spratt", email = "benmarwick@gmail.com", role = c("aut")),
+             person("Maureen", "Raymo", email = "benmarwick@gmail.com", role = c("aut")))
 Maintainer: Ben Marwick <benmarwick@gmail.com>
 Description: Contains published datasets for global benthic d18O data for 
     0-5.3 Myr <doi:10.1029/2004PA001071> and global sea levels based 
