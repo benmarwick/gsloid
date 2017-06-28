@@ -1,6 +1,6 @@
-Package: gslic
+Package: gsloid
 Type: Package
-Title: Global benthic d18O and sea level data sets
+Title: Global Sea Level and Oxygen Isotope Data
 Version: 0.1.0
 Authors@R: person("Ben", "Marwick", email = "benmarwick@gmail.com", role = c("aut", "cre"))
 Maintainer: Ben Marwick <benmarwick@gmail.com>
