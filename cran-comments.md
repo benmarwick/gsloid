@@ -24,11 +24,34 @@ Found the following (possibly) invalid URLs:
 Pls fix 
 #--
 
-I have wrapped those DOIs in <>, and now the tests show:
+I have wrapped those DOIs in \doi{}, and now the tests show:
 
+--
 rhub::check_for_cran(show_status = FALSE) shows...
 
+1518#> Error: processing vignette 'Introduction.Rmd' failed with diagnostics:
+1519#> X11 font -adobe-helvetica-%s-%s-*-*-%d-*-*-*-*-*-*-*, face 5 at size 11 could not be loaded
+1520#> Execution halted
+
+--
 devtools::build_win() shows...
+
+NOTE 
+Found the following (possibly) invalid URLs:
+  URL: doi:10.1029/2004PA001071
+    From: inst/doc/Introduction.html
+    Message: Invalid URI scheme (use \doi for DOIs in Rd markup)
+  URL: doi:10.5194/cp-12-1-2016
+    From: inst/doc/Introduction.html
+    Message: Invalid URI scheme (use \doi for DOIs in Rd markup)
+
+--
+devtools::check() shows...
+
+
+
+R CMD check results
+0 errors | 0 warnings | 0 notes
 
 ---
 28 June 2017
