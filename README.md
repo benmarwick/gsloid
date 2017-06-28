@@ -3,6 +3,8 @@
 gsloid: global sea level and oxygen isotope data
 ================================================
 
+[![Travis-CI Build Status](https://travis-ci.org/benmarwick/gsloid.png?branch=master)](https://travis-ci.org/benmarwick/gsloid)
+
 The goal of gsloid is to make available raw data for sea level curves and *δ*<sup>18</sup>O curves for the Holocene and most of the Pleistocene.
 
 Installation
