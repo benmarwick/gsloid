@@ -138,6 +138,34 @@ ggplot() +
   theme_bw()
 ```
 
+And sometimes we might want shaded rectangles to indicate the MIS:
+
+```{r}
+ggplot() +
+  annotate("rect", 
+           xmin = mis_last_250ka$line_start, 
+           xmax = mis_last_250ka$LR04_Age_ka, 
+           ymin = -Inf, 
+           ymax = Inf,
+        alpha = .2,
+        fill = rep(c("grey70", "white"), 
+                   nrow(mis_last_250ka)/2)) +
+  annotate("text", 
+           label = mis_last_250ka$label, 
+           x =     mis_last_250ka$mid,
+           y = c(rep(3, 4), 
+                 seq(3.1, 2.8, length.out = 5),
+                 rep(3, 3)),
+           size = 3) +
+  geom_line(data = lisiecki2005,                # add d18O line
+            aes(Time,
+                d18O),
+            size = 0.75) +  
+  scale_x_continuous(limits = c(0, 250),
+                     name = "x 1000 years ago") +
+  scale_y_reverse(name = bquote(delta^18*O)) +
+  theme_bw()
+```
 
 
 
