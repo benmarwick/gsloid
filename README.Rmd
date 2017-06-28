@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 
 # gsloid: global sea level and oxygen isotope data
 
-The goal of gsloid is to make available raw data for sea level curves and d^18^O curves for the Holocene and most of the Pliestocene. 
+The goal of gsloid is to make available raw data for sea level curves and $\delta$^18^O curves for the Holocene and most of the Pleistocene. 
 
 ## Installation
 

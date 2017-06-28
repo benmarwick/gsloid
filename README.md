@@ -3,7 +3,7 @@
 gsloid: global sea level and oxygen isotope data
 ================================================
 
-The goal of gsloid is to make available raw data for sea level curves and d<sup>18</sup>O curves for the Holocene and most of the Pliestocene.
+The goal of gsloid is to make available raw data for sea level curves and *δ*<sup>18</sup>O curves for the Holocene and most of the Pleistocene.
 
 Installation
 ------------
