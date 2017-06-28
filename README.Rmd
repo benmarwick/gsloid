@@ -42,7 +42,7 @@ references <- data.frame(Dataset = c("lisiecki2005", "spratt2016"),
 knitr::kable(references)
 ```
 
-Here's the structure of contents of the main datasets:
+Here's the structure of the main datasets:
 
 ```{r}
 library(gslic)

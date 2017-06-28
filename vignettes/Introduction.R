@@ -5,13 +5,13 @@ knitr::opts_chunk$set( fig.width=7,
 
 ## ---- echo = FALSE-------------------------------------------------------
 references <- data.frame(Dataset = c("lisiecki2005", "spratt2016"),
-                         Source = c("Lisiecki, L.E. and M.E. Raymo. 2005. A Pliocene-Pleistocene stack of 57 globally distributed benthic D18O records. Paleoceanography, Vol. 20, PA1003, doi:10.1029/2004PA001071.",
-                                    "Spratt, Rachel M. and Lorraine E. Lisiecki 2016. A Late Pleistocene sea level stack. Climate of the Past. Vol. 12, 1079-1092, doi:10.5194/cp-12-1-2016"))
+                         Source = c("Lisiecki, L.E. and M.E. Raymo. 2005. A Pliocene-Pleistocene stack of 57 globally distributed benthic D18O records. Paleoceanography, Vol. 20, PA1003, <doi:10.1029/2004PA001071>",
+                                    "Spratt, Rachel M. and Lorraine E. Lisiecki 2016. A Late Pleistocene sea level stack. Climate of the Past. Vol. 12, 1079-1092, <doi:10.5194/cp-12-1-2016>"))
 
 knitr::kable(references)
 
 ## ------------------------------------------------------------------------
-library(gslic)
+library(gsloid)
 str(lisiecki2005)
 
 ## ------------------------------------------------------------------------

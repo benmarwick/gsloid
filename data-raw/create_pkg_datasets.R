@@ -38,3 +38,6 @@ LR04_MISboundaries$line_start <- c(0, LR04_MISboundaries$LR04_Age_ka[-length(LR0
 LR04_MISboundaries$mid <- LR04_MISboundaries$line_start + ((LR04_MISboundaries$LR04_Age_ka - LR04_MISboundaries$line_start) / 2)
 devtools::use_data(LR04_MISboundaries, overwrite = TRUE )
 
+# checking
+goodpractice::gp()
+rhub::check_for_cran(show_status = FALSE)
