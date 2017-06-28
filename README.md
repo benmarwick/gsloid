@@ -1,5 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+\`\`\`
+
 gsloid: global sea level and oxygen isotope data
 ================================================
 
@@ -27,15 +29,15 @@ This package includes two commonly used datasets in palaeoecology and archaeolog
 
 There are many possible sources for these kinds of data, this package includes data from:
 
-| Dataset      | Source                                                                                                                                                                            |
-|:-------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| lisiecki2005 | Lisiecki, L.E. and M.E. Raymo. 2005. A Pliocene-Pleistocene stack of 57 globally distributed benthic D18O records. Paleoceanography, Vol. 20, PA1003, <doi:10.1029/2004PA001071>. |
-| spratt2016   | Spratt, Rachel M. and Lorraine E. Lisiecki 2016. A Late Pleistocene sea level stack. Climate of the Past. Vol. 12, 1079-1092, <doi:10.5194/cp-12-1-2016>                          |
+| Dataset      | Source                                                                                                                                                                           |
+|:-------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| lisiecki2005 | Lisiecki, L.E. and M.E. Raymo. 2005. A Pliocene-Pleistocene stack of 57 globally distributed benthic D18O records. Paleoceanography, Vol. 20, PA1003, <doi:10.1029/2004PA001071> |
+| spratt2016   | Spratt, Rachel M. and Lorraine E. Lisiecki 2016. A Late Pleistocene sea level stack. Climate of the Past. Vol. 12, 1079-1092, <doi:10.5194/cp-12-1-2016>                         |
 
 Here's the structure of the main datasets:
 
 ``` r
-library(gslic)
+library(gsloid)
 str(lisiecki2005)
 #> 'data.frame':    2115 obs. of  3 variables:
 #>  $ Time : num  0 1 2 3 4 5 6 7 8 9 ...
@@ -62,7 +64,7 @@ Detailed descriptions of the variables are avaliable in the data documentation, 
 Usage
 -----
 
-Atlhough these data are suitable for many kinds of analyses, the primary reason that I made this package is so I can make my own plots of these data without having to copy a plot from another publication. Here's how I typically start with plotting the oxygen isotope data:
+Atlhough these data are suitable for many kinds of analyses, the primary reason that I made this package is so I can make my own plots of these data without having to copy a plot from another publication. Here's how I typically start with plotting the oxygen isotope data. I have set limits on the x-axis so it only shows 0-250 ka because that's what I'm interested in:
 
 ``` r
 library(ggplot2)
@@ -76,7 +78,6 @@ ggplot(lisiecki2005,
                      name = "x 1000 years ago") +
   scale_y_reverse(name = bquote(delta^18*O)) +
   theme_bw()
-#> Warning: Removed 1864 rows containing missing values (geom_path).
 ```
 
 ![](vignettes/figures/README-unnamed-chunk-5-1.png)
@@ -92,7 +93,6 @@ ggplot(spratt2016,
                      name = "x 1000 years ago") +
   scale_y_continuous(name = "Sea Level, meters above present day") +
   theme_bw()
-#> Warning: Removed 548 rows containing missing values (geom_path).
 ```
 
 ![](vignettes/figures/README-unnamed-chunk-6-1.png)
@@ -125,7 +125,6 @@ ggplot() +
                      name = "x 1000 years ago") +
   scale_y_reverse(name = bquote(delta^18*O)) +
   theme_bw()
-#> Warning: Removed 1864 rows containing missing values (geom_path).
 ```
 
 ![](vignettes/figures/README-unnamed-chunk-7-1.png)
@@ -156,7 +155,6 @@ ggplot() +
                      name = "x 1000 years ago") +
   scale_y_reverse(name = bquote(delta^18*O)) +
   theme_bw()
-#> Warning: Removed 1864 rows containing missing values (geom_path).
 ```
 
 ![](vignettes/figures/README-unnamed-chunk-8-1.png)
@@ -171,7 +169,7 @@ ggplot() +
            ymin = -Inf, 
            ymax = Inf,
         alpha = .2,
-        fill = rep(c("grey50", "white"), 
+        fill = rep(c("grey70", "white"), 
                    nrow(mis_last_250ka)/2)) +
   annotate("text", 
            label = mis_last_250ka$label, 
@@ -188,7 +186,34 @@ ggplot() +
                      name = "x 1000 years ago") +
   scale_y_reverse(name = bquote(delta^18*O)) +
   theme_bw()
-#> Warning: Removed 1864 rows containing missing values (geom_path).
 ```
 
 ![](vignettes/figures/README-unnamed-chunk-9-1.png)
+
+Maybe we want the MIS regions by themselves so we can plot some other time series besides the ones includes here. We need to adjust the `y` values in the `annotate()` function to ensure that the MIS labels show in a readble way. Here I show an imaginary variable that might have a maximum value of about 10. So I adjust the `y` values in the `annotate()` function to position the MIS labels just below 10 on the y axis.
+
+``` r
+ggplot() +
+  annotate("rect", 
+           xmin = mis_last_250ka$line_start, 
+           xmax = mis_last_250ka$LR04_Age_ka, 
+           ymin = -Inf, 
+           ymax = Inf,
+        alpha = .2,
+        fill = rep(c("grey70", "white"), 
+                   nrow(mis_last_250ka)/2)) +
+  annotate("text", 
+           label = mis_last_250ka$label, 
+           x =     mis_last_250ka$mid,
+           y = c(rep(9, 4), 
+                 seq(8.1, 9.9, length.out = 5),
+                 rep(9, 3)),
+           size = 3) +
+  scale_x_continuous(limits = c(0, 250),
+                     name = "x 1000 years ago") +
+  scale_y_continuous(limits = c(0, 10),
+                  name = "Some other variable (units)") +
+  theme_bw()
+```
+
+![](vignettes/figures/README-unnamed-chunk-10-1.png)

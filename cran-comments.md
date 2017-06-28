@@ -24,7 +24,11 @@ Found the following (possibly) invalid URLs:
 Pls fix 
 #--
 
-I have wrapped those DOIs in <>, and rhub::check_for_cran(show_status = FALSE) shows 
+I have wrapped those DOIs in <>, and now the tests show:
+
+rhub::check_for_cran(show_status = FALSE) shows...
+
+devtools::build_win() shows...
 
 ---
 28 June 2017

@@ -1,74 +1,23 @@
----
-output: github_document
----
+## ----echo = FALSE--------------------------------------------------------
+knitr::opts_chunk$set( fig.width=7, 
+                       message = FALSE,
+                       warning = FALSE)
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
-```{r, echo = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "vignettes/figures/README-",
-  fig.width=7, 
-  message = FALSE,
-  warning = FALSE)
-```
-
-```
-
-# gsloid: global sea level and oxygen isotope data
-
-
-[![Travis-CI Build Status](https://travis-ci.org/benmarwick/gsloid.png?branch=master)](https://travis-ci.org/benmarwick/gsloid) 
-
-
-The goal of gsloid is to make available raw data for sea level curves and $\delta$^18^O curves for the Holocene and most of the Pleistocene. 
-
-## Installation
-
-You can install gsloid from github with:
-
-```{r gh-installation, eval = FALSE}
-# install.packages("devtools")
-devtools::install_github("benmarwick/gsloid")
-```
-
-## Overview
-
-This package includes two commonly used datasets in palaeoecology and archaeology:
-
-- A global sea level curve
-- A global oxygen isotope curve
-
-There are many possible sources for these kinds of data, this package includes data from:
-
-```{r, echo = FALSE}
+## ---- echo = FALSE-------------------------------------------------------
 references <- data.frame(Dataset = c("lisiecki2005", "spratt2016"),
                          Source = c("Lisiecki, L.E. and M.E. Raymo. 2005. A Pliocene-Pleistocene stack of 57 globally distributed benthic D18O records. Paleoceanography, Vol. 20, PA1003, <doi:10.1029/2004PA001071>",
                                     "Spratt, Rachel M. and Lorraine E. Lisiecki 2016. A Late Pleistocene sea level stack. Climate of the Past. Vol. 12, 1079-1092, <doi:10.5194/cp-12-1-2016>"))
 
 knitr::kable(references)
-```
 
-Here's the structure of the main datasets:
-
-```{r}
+## ------------------------------------------------------------------------
 library(gsloid)
 str(lisiecki2005)
-```
 
-```{r}
+## ------------------------------------------------------------------------
 str(spratt2016)
-```
 
-Detailed descriptions of the variables are avaliable in the data documentation, run `?lisiecki2005` and `?spratt2016` for more information.
-
-
-## Usage
-
-Atlhough these data are suitable for many kinds of analyses, the primary reason that I made this package is so I can make my own plots of these data without having to copy a plot from another publication. Here's how I typically start with plotting the oxygen isotope data. I have set limits on the x-axis so it only shows 0-250 ka because that's what I'm interested in:
-
-```{r}
+## ------------------------------------------------------------------------
 library(ggplot2)
 
 
@@ -80,11 +29,8 @@ ggplot(lisiecki2005,
                      name = "x 1000 years ago") +
   scale_y_reverse(name = bquote(delta^18*O)) +
   theme_bw()
-```
 
-And here's how I start to plot the sea level data:
-
-```{r}
+## ------------------------------------------------------------------------
 ggplot(spratt2016, 
        aes(age_calkaBP,
            SeaLev_shortPC1)) +
@@ -93,13 +39,8 @@ ggplot(spratt2016,
                      name = "x 1000 years ago") +
   scale_y_continuous(name = "Sea Level, meters above present day") +
   theme_bw()
-```
 
-Often we want to see the Marine istope stages on these plots also. This package includes the dataset `LR04_MISboundaries` of start and end dates for each stage, so we can draw these stages easily. 
-
-Some care is required to get the MIS numbers positions in an easy-to-read location. Here I use `rep()` and `seq()` to help position the numbers. 
-
-```{r}
+## ------------------------------------------------------------------------
 # subset the MIS data for the last 250 ka years
 mis_last_250ka <- LR04_MISboundaries[LR04_MISboundaries$LR04_Age_ka <= 250, ]
 
@@ -123,11 +64,8 @@ ggplot() +
                      name = "x 1000 years ago") +
   scale_y_reverse(name = bquote(delta^18*O)) +
   theme_bw()
-```
 
-Sometimes we prefer to indicate the MIS by horizontal lines. Once again we have to carefully place the line segments and labels so they are clear to read:
-
-```{r}
+## ------------------------------------------------------------------------
 ggplot() +
   geom_segment(data = mis_last_250ka, # add MIS lines
                aes(x =    line_start,
@@ -151,11 +89,8 @@ ggplot() +
                      name = "x 1000 years ago") +
   scale_y_reverse(name = bquote(delta^18*O)) +
   theme_bw()
-```
 
-And sometimes we might want shaded rectangles to indicate the MIS:
-
-```{r}
+## ------------------------------------------------------------------------
 ggplot() +
   annotate("rect", 
            xmin = mis_last_250ka$line_start, 
@@ -180,12 +115,8 @@ ggplot() +
                      name = "x 1000 years ago") +
   scale_y_reverse(name = bquote(delta^18*O)) +
   theme_bw()
-```
 
-Maybe we want the MIS regions by themselves so we can plot some other time series besides the ones includes here. We need to adjust the `y` values in the `annotate()` function to ensure that the MIS labels show in a readble way. Here I show an imaginary variable that might have a maximum value of about 10. So I adjust the  `y` values in the `annotate()` function to position the MIS labels just below 10 on the y axis. 
-
-
-```{r}
+## ------------------------------------------------------------------------
 ggplot() +
   annotate("rect", 
            xmin = mis_last_250ka$line_start, 
@@ -207,5 +138,4 @@ ggplot() +
   scale_y_continuous(limits = c(0, 10),
                   name = "Some other variable (units)") +
   theme_bw()
-```
 
