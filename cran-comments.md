@@ -24,7 +24,7 @@ Found the following (possibly) invalid URLs:
 Pls fix 
 #--
 
-I have wrapped those DOIs in \doi{} in the DESCRIPTION, convert to URLs in vignette, and now the tests show:
+I have wrapped those DOIs in \doi{} in the DESCRIPTION, convert to URLs in vignette, and that seems to have solved the problem. Now the tests show:
 
 --
 rhub::check_for_cran(show_status = FALSE) shows...
