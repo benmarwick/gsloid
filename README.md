@@ -20,10 +20,11 @@ devtools::install_github("benmarwick/gsloid")
 Overview
 --------
 
-This package includes two commonly used datasets in palaeoecology and archaeology:
+This package includes commonly used datasets in palaeoecology and archaeology:
 
--   A global sea level curve
--   A global oxygen isotope curve
+-   Global sea level curve
+-   Global oxygen isotope curve
+-   Boundary ages for Marine Isotope Stages
 
 There are many possible sources for these kinds of data, this package includes data from:
 
@@ -59,7 +60,19 @@ str(spratt2016)
 #>  $ SeaLev_longPC1_err_up  : num  20.38 17.1 14.21 10.9 7.63 ...
 ```
 
-Detailed descriptions of the variables are avaliable in the data documentation, run `?lisiecki2005` and `?spratt2016` for more information.
+``` r
+str(LR04_MISboundaries)
+#> 'data.frame':    232 obs. of  7 variables:
+#>  $ MIS_Boundary     : chr  "1/2" "2/3" "3/4" "4/5" ...
+#>  $ start_MIS        : chr  "1" "2" "3" "4" ...
+#>  $ end_MIS          : chr  "2" "3" "4" "5" ...
+#>  $ label_MIS        : chr  "1" "2" "3" "4" ...
+#>  $ LR04_Age_ka_start: num  14 29 57 71 82 87 96 109 123 130 ...
+#>  $ LR04_Age_ka_end  : num  0 14 29 57 71 82 87 96 109 123 ...
+#>  $ LR04_Age_ka_mid  : num  7 21.5 43 64 76.5 ...
+```
+
+Detailed descriptions of the variables are avaliable in the data documentation, run `?lisiecki2005`, `?spratt2016` and `?LR04_MISboundaries` for more information.
 
 Usage
 -----
@@ -80,7 +93,7 @@ ggplot(lisiecki2005,
   theme_bw()
 ```
 
-![](vignettes/figures/README-unnamed-chunk-5-1.png)
+![](vignettes/figures/README-unnamed-chunk-6-1.png)
 
 And here's how I start to plot the sea level data:
 
@@ -95,7 +108,7 @@ ggplot(spratt2016,
   theme_bw()
 ```
 
-![](vignettes/figures/README-unnamed-chunk-6-1.png)
+![](vignettes/figures/README-unnamed-chunk-7-1.png)
 
 Often we want to see the Marine istope stages on these plots also. This package includes the dataset `LR04_MISboundaries` of start and end dates for each stage, so we can draw these stages easily. I obtained these data from Lorraine Lisiecki's web page: <http://lorraine-lisiecki.com/LR04_MISboundaries.txt>
 
@@ -103,16 +116,16 @@ Some care is required to get the MIS numbers positions in easy-to-read locations
 
 ``` r
 # subset the MIS data for the last 250 ka years
-mis_last_250ka <- LR04_MISboundaries[LR04_MISboundaries$LR04_Age_ka <= 250, ]
+mis_last_250ka <- LR04_MISboundaries[LR04_MISboundaries$LR04_Age_ka_start <= 250, ]
 
 # plot the oxygen istope data line on top of the MIS lines
 ggplot() +
   geom_vline(data = mis_last_250ka,          # add MIS lines
-             aes(xintercept = LR04_Age_ka),
+             aes(xintercept = LR04_Age_ka_start),
              colour = "blue") +
   annotate("text", 
-           label = mis_last_250ka$label, 
-           x = mis_last_250ka$LR04_Age_ka - 4,
+           label = mis_last_250ka$label_MIS, 
+           x = mis_last_250ka$LR04_Age_ka_mid,
            y = c(rep(3.0, 4), 
                  seq(3.2, 2.7, length.out = 6), 
                  rep(3.0, 2)),
@@ -126,22 +139,22 @@ ggplot() +
   theme_bw()
 ```
 
-![](vignettes/figures/README-unnamed-chunk-7-1.png)
+![](vignettes/figures/README-unnamed-chunk-8-1.png)
 
 Sometimes we prefer to indicate the MIS by horizontal lines. Once again we have to carefully place the line segments and labels so they are clear to read:
 
 ``` r
 ggplot() +
   geom_segment(data = mis_last_250ka, # add MIS lines
-               aes(x =    line_start,
-                   xend = LR04_Age_ka,
+               aes(x =    LR04_Age_ka_end,
+                   xend = LR04_Age_ka_start,
                    y =    seq(3, 2.5, length.out = nrow(mis_last_250ka)),
                    yend = seq(3, 2.5, length.out = nrow(mis_last_250ka))),
                colour = "blue",
                size = 1) +
   annotate("text", 
-           label = mis_last_250ka$label, 
-           x =     mis_last_250ka$mid,
+           label = mis_last_250ka$label_MIS, 
+           x =     mis_last_250ka$LR04_Age_ka_mid,
            y = c(seq(2.9, 2.7, length.out = 4), 
                  seq(3.1, 2.8, length.out = 5),
                  seq(2.4, 2.3, length.out = 3)),
@@ -155,23 +168,23 @@ ggplot() +
   theme_bw()
 ```
 
-![](vignettes/figures/README-unnamed-chunk-8-1.png)
+![](vignettes/figures/README-unnamed-chunk-9-1.png)
 
 And sometimes we might want shaded rectangles to indicate the MIS:
 
 ``` r
 ggplot() +
   annotate("rect", 
-           xmin = mis_last_250ka$line_start, 
-           xmax = mis_last_250ka$LR04_Age_ka, 
+           xmin = mis_last_250ka$LR04_Age_ka_end, 
+           xmax = mis_last_250ka$LR04_Age_ka_start, 
            ymin = -Inf, 
            ymax = Inf,
         alpha = .2,
         fill = rep(c("grey70", "white"), 
                    nrow(mis_last_250ka)/2)) +
   annotate("text", 
-           label = mis_last_250ka$label, 
-           x =     mis_last_250ka$mid,
+           label = mis_last_250ka$label_MIS, 
+           x =     mis_last_250ka$LR04_Age_ka_mid,
            y = c(rep(3, 4), 
                  seq(3.1, 2.8, length.out = 5),
                  rep(3, 3)),
@@ -185,27 +198,28 @@ ggplot() +
   theme_bw()
 ```
 
-![](vignettes/figures/README-unnamed-chunk-9-1.png)
+![](vignettes/figures/README-unnamed-chunk-10-1.png)
 
 Maybe we want the MIS regions by themselves so we can plot some other time series besides the ones includes here. We need to adjust the `y` values in the `annotate()` function to ensure that the MIS labels show in a readble way. Here I show an imaginary variable that might have a maximum value of about 10. So I adjust the `y` values in the `annotate()` function to position the MIS labels just below 10 on the y axis.
 
 ``` r
 ggplot() +
   annotate("rect", 
-           xmin = mis_last_250ka$line_start, 
-           xmax = mis_last_250ka$LR04_Age_ka, 
+           xmin = mis_last_250ka$LR04_Age_ka_end , 
+           xmax = mis_last_250ka$LR04_Age_ka_start, 
            ymin = -Inf, 
            ymax = Inf,
         alpha = .2,
         fill = rep(c("grey70", "white"), 
                    nrow(mis_last_250ka)/2)) +
   annotate("text", 
-           label = mis_last_250ka$label, 
-           x =     mis_last_250ka$mid,
+           label = mis_last_250ka$label_MIS, 
+           x =     mis_last_250ka$LR04_Age_ka_mid, 
            y = c(rep(9, 4), 
                  seq(8.1, 9.9, length.out = 5),
                  rep(9, 3)),
            size = 3) +
+  # add in other geoms here...
   scale_x_continuous(limits = c(0, 250),
                      name = "x 1000 years ago") +
   scale_y_continuous(limits = c(0, 10),
@@ -213,4 +227,4 @@ ggplot() +
   theme_bw()
 ```
 
-![](vignettes/figures/README-unnamed-chunk-10-1.png)
+![](vignettes/figures/README-unnamed-chunk-11-1.png)
