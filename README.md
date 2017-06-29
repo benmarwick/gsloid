@@ -1,7 +1,5 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-\`\`\`
-
 gsloid: global sea level and oxygen isotope data
 ================================================
 
