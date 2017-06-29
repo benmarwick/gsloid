@@ -24,31 +24,50 @@ Found the following (possibly) invalid URLs:
 Pls fix 
 #--
 
-I have wrapped those DOIs in \doi{}, and now the tests show:
+I have wrapped those DOIs in \doi{} in the DESCRIPTION, convert to URLs in vignette, and now the tests show:
 
 --
 rhub::check_for_cran(show_status = FALSE) shows...
 
-1518#> Error: processing vignette 'Introduction.Rmd' failed with diagnostics:
-1519#> X11 font -adobe-helvetica-%s-%s-*-*-%d-*-*-*-*-*-*-*, face 5 at size 11 could not be loaded
-1520#> Execution halted
+WARNINGS:
+* checking top-level files ... WARNING
+Conversion of ‘README.md’ failed:
+pandoc: Could not fetch https://travis-ci.org/benmarwick/gsloid.png?branch=master
+HttpExceptionRequest Request {
+  host                 = "travis-ci.org"
+  port                 = 443
+  secure               = True
+  requestHeaders       = []
+  path                 = "/benmarwick/gsloid.png"
+  queryString          = "?branch=master"
+  method               = "GET"
+  proxy                = Nothing
+  rawBody              = False
+  redirectCount        = 10
+  responseTimeout      = ResponseTimeoutDefault
+  requestVersion       = HTTP/1.1
+}
+ (ConnectionFailure getProtocolByName: does not exist (no such protocol name: tcp))
+NOTES:
+ * checking CRAN incoming feasibility ... NOTE
+Maintainer: ‘Ben Marwick <benmarwick@gmail.com>’
+
+New submission
 
 --
 devtools::build_win() shows...
 
-NOTE 
-Found the following (possibly) invalid URLs:
-  URL: doi:10.1029/2004PA001071
-    From: inst/doc/Introduction.html
-    Message: Invalid URI scheme (use \doi for DOIs in Rd markup)
-  URL: doi:10.5194/cp-12-1-2016
-    From: inst/doc/Introduction.html
-    Message: Invalid URI scheme (use \doi for DOIs in Rd markup)
+* checking CRAN incoming feasibility ... NOTE
+Maintainer: 'Ben Marwick <benmarwick@gmail.com>'
 
+New submission
+
+Possibly mis-spelled words in DESCRIPTION:
+  Myr (11:11)
+  benthic (10:53)
+  ka (12:44)
 --
 devtools::check() shows...
-
-
 
 R CMD check results
 0 errors | 0 warnings | 0 notes
