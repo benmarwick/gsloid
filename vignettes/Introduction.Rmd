@@ -12,7 +12,7 @@ vignette: >
 ---
 
 ```{r echo = FALSE}
-knitr::opts_chunk$set( fig.width=7, 
+knitr::opts_chunk$set( fig.width =  183 * 0.0393701,  # nature's two col width
                        message = FALSE,
                        warning = FALSE)
 ```
@@ -20,10 +20,11 @@ knitr::opts_chunk$set( fig.width=7,
 
 ## Overview
 
-This package includes two commonly used datasets in palaeoecology and archaeology:
+This package includes commonly used datasets in palaeoecology and archaeology:
 
-- A global sea level curve
-- A global oxygen isotope curve
+- Global sea level curve
+- Global oxygen isotope curve
+- Boundary ages for Marine Isotope Stages
 
 There are many possible sources for these kinds of data, this package includes data from:
 
@@ -48,8 +49,12 @@ str(lisiecki2005)
 str(spratt2016)
 ```
 
-Detailed descriptions of the variables are avaliable in the data documentation, run `?lisiecki2005` and `?spratt2016` for more information.
+```{r}
+str(LR04_MISboundaries)
+```
 
+
+Detailed descriptions of the variables are avaliable in the data documentation, run `?lisiecki2005`,  `?spratt2016` and `?LR04_MISboundaries` for more information.
 
 ## Usage
 
@@ -88,16 +93,16 @@ Some care is required to get the MIS numbers positions in easy-to-read locations
 
 ```{r}
 # subset the MIS data for the last 250 ka years
-mis_last_250ka <- LR04_MISboundaries[LR04_MISboundaries$LR04_Age_ka <= 250, ]
+mis_last_250ka <- LR04_MISboundaries[LR04_MISboundaries$LR04_Age_ka_start <= 250, ]
 
 # plot the oxygen istope data line on top of the MIS lines
 ggplot() +
   geom_vline(data = mis_last_250ka,          # add MIS lines
-             aes(xintercept = LR04_Age_ka),
+             aes(xintercept = LR04_Age_ka_start),
              colour = "blue") +
   annotate("text", 
-           label = mis_last_250ka$label, 
-           x = mis_last_250ka$LR04_Age_ka - 4,
+           label = mis_last_250ka$label_MIS, 
+           x = mis_last_250ka$LR04_Age_ka_mid,
            y = c(rep(3.0, 4), 
                  seq(3.2, 2.7, length.out = 6), 
                  rep(3.0, 2)),
@@ -116,15 +121,15 @@ Sometimes we prefer to indicate the MIS by horizontal lines. Once again we have 
 ```{r}
 ggplot() +
   geom_segment(data = mis_last_250ka, # add MIS lines
-               aes(x =    line_start,
-                   xend = LR04_Age_ka,
+               aes(x =    LR04_Age_ka_end,
+                   xend = LR04_Age_ka_start,
                    y =    seq(3, 2.5, length.out = nrow(mis_last_250ka)),
                    yend = seq(3, 2.5, length.out = nrow(mis_last_250ka))),
                colour = "blue",
                size = 1) +
   annotate("text", 
-           label = mis_last_250ka$label, 
-           x =     mis_last_250ka$mid,
+           label = mis_last_250ka$label_MIS, 
+           x =     mis_last_250ka$LR04_Age_ka_mid,
            y = c(seq(2.9, 2.7, length.out = 4), 
                  seq(3.1, 2.8, length.out = 5),
                  seq(2.4, 2.3, length.out = 3)),
@@ -143,24 +148,23 @@ And sometimes we might want shaded rectangles to indicate the MIS:
 ```{r}
 ggplot() +
   annotate("rect", 
-           xmin = mis_last_250ka$line_start, 
-           xmax = mis_last_250ka$LR04_Age_ka, 
+           xmin = mis_last_250ka$LR04_Age_ka_end, 
+           xmax = mis_last_250ka$LR04_Age_ka_start, 
            ymin = -Inf, 
            ymax = Inf,
         alpha = .2,
         fill = rep(c("grey70", "white"), 
                    nrow(mis_last_250ka)/2)) +
   annotate("text", 
-           label = mis_last_250ka$label, 
-           x =     mis_last_250ka$mid,
+           label = mis_last_250ka$label_MIS, 
+           x =     mis_last_250ka$LR04_Age_ka_mid,
            y = c(rep(3, 4), 
                  seq(3.1, 2.8, length.out = 5),
                  rep(3, 3)),
            size = 3) +
   geom_line(data = lisiecki2005,                # add d18O line
             aes(Time,
-                d18O),
-            size = 0.75) +  
+                d18O)) +  
   scale_x_continuous(limits = c(0, 250),
                      name = "x 1000 years ago") +
   scale_y_reverse(name = bquote(delta^18*O)) +
@@ -173,20 +177,21 @@ Maybe we want the MIS regions by themselves so we can plot some other time serie
 ```{r}
 ggplot() +
   annotate("rect", 
-           xmin = mis_last_250ka$line_start, 
-           xmax = mis_last_250ka$LR04_Age_ka, 
+           xmin = mis_last_250ka$LR04_Age_ka_end , 
+           xmax = mis_last_250ka$LR04_Age_ka_start, 
            ymin = -Inf, 
            ymax = Inf,
         alpha = .2,
         fill = rep(c("grey70", "white"), 
                    nrow(mis_last_250ka)/2)) +
   annotate("text", 
-           label = mis_last_250ka$label, 
-           x =     mis_last_250ka$mid,
+           label = mis_last_250ka$label_MIS, 
+           x =     mis_last_250ka$LR04_Age_ka_mid, 
            y = c(rep(9, 4), 
                  seq(8.1, 9.9, length.out = 5),
                  rep(9, 3)),
            size = 3) +
+  # add in other geoms here...
   scale_x_continuous(limits = c(0, 250),
                      name = "x 1000 years ago") +
   scale_y_continuous(limits = c(0, 10),

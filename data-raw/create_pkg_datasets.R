@@ -30,14 +30,17 @@ names(LR04_MISboundaries) <- c("MIS_Boundary", "LR04_Age_ka")
 LR04_MISboundaries <-  LR04_MISboundaries[-c(1:2), ]
 LR04_MISboundaries[, 1] <- as.character(LR04_MISboundaries[, 1])
 LR04_MISboundaries[, 2] <- as.numeric(as.character(LR04_MISboundaries[, 2]))
-LR04_MISboundaries <-   cbind(LR04_MISboundaries,setNames(as.data.frame(do.call(rbind, strsplit(LR04_MISboundaries[, 1], "/")), stringsAsFactors = FALSE), c("end", "start")))
-LR04_MISboundaries$label <- ifelse(grepl("\\(peak\\)", LR04_MISboundaries$end),
+LR04_MISboundaries <-   cbind(LR04_MISboundaries,setNames(as.data.frame(do.call(rbind, strsplit(LR04_MISboundaries[, 1], "/")), stringsAsFactors = FALSE), c("start_MIS", "end_MIS")))
+LR04_MISboundaries$label_MIS <- ifelse(grepl("\\(peak\\)", LR04_MISboundaries$end),
                                  gsub("\\(peak\\)", "", LR04_MISboundaries$end),
                                  LR04_MISboundaries$end)
-LR04_MISboundaries$line_start <- c(0, LR04_MISboundaries$LR04_Age_ka[-length(LR04_MISboundaries$LR04_Age_ka)])
-LR04_MISboundaries$mid <- LR04_MISboundaries$line_start + ((LR04_MISboundaries$LR04_Age_ka - LR04_MISboundaries$line_start) / 2)
+LR04_MISboundaries$LR04_Age_ka_start <- LR04_MISboundaries$LR04_Age_ka
+LR04_MISboundaries$LR04_Age_ka <- NULL
+LR04_MISboundaries$LR04_Age_ka_end <- c(0, LR04_MISboundaries$LR04_Age_ka_start[-length(LR04_MISboundaries$LR04_Age_ka_start)])
+LR04_MISboundaries$LR04_Age_ka_mid <- LR04_MISboundaries$LR04_Age_ka_end + ((LR04_MISboundaries$LR04_Age_ka_start - LR04_MISboundaries$LR04_Age_ka_end) / 2)
 devtools::use_data(LR04_MISboundaries, overwrite = TRUE )
 
 # checking
 goodpractice::gp()
-rhub::check_for_cran(show_status = FALSE)
+rhub::check(platform = rhub::platforms()$name, show_status = FALSE)
+devtools::build_win()

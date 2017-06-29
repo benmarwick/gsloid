@@ -154,7 +154,7 @@
 #'  Variables
 #'  Data variable description include: what, material, error, units, seasonality, archive, detail, method, C or N for Character or Numeric data)
 #'
-#' #' @format A data frame with 799 rows and 9 variables:
+#' #@format A data frame with 799 rows and 9 variables:
 #' \describe{
 #'   \item{age_calkaBP}{Age, calendar ka BP}
 #'   \item{SeaLev_shortPC1}{Sea Level, meters above present day, climate reconstructions, Scaled first principal component of seven sea level reconstructions (0-430 ka),N}
@@ -176,11 +176,16 @@
 #' From http://www.lorraine-lisiecki.com/LR04_MISboundaries.txt
 #'
 #'
-#'  @format A data frame with 232 rows and 2 variables:
+#' @format A data frame with 232 rows and 7 variables:
 #' \describe{
 #'   \item{MIS_Boundary}{Marine isotope stage boundary}
-#'   \item{LR04_Age_ka}{x 1000 years ago}
-#'   }
+#'   \item{start_MIS}{start of this phase}
+#'   \item{end_MIS}{end of this phase}
+#'   \item{label_MIS}{short version of 'end_MIS' suitable for annotating plots}
+#'   \item{LR04_Age_ka_start}{Age of start of MIS, x 1000 years ago}
+#'   \item{LR04_Age_ka_end}{Age of end of MIS, x 1000 years ago}
+#'   \item{LR04_Age_ka_mid}{Age of middle of MIS, x 1000 years ago, suitable for controlling label placement on plots}
+#' }
 #' @source \url{http://www.lorraine-lisiecki.com/LR04_MISboundaries.txt}
 "LR04_MISboundaries"
 

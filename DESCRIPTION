@@ -8,8 +8,8 @@ Authors@R: c(person("Ben", "Marwick", email = "benmarwick@gmail.com", role = c("
              person("Maureen", "Raymo", email = "benmarwick@gmail.com", role = c("aut")))
 Maintainer: Ben Marwick <benmarwick@gmail.com>
 Description: Contains published data sets for global benthic d18O data for 
-    0-5.3 Myr \doi{10.1029/2004PA001071} and global sea levels based 
-    on marine sediment core data for 0-800 ka \doi{10.5194/cp-12-1-2016}.
+    0-5.3 Myr <doi:10.1029/2004PA001071> and global sea levels based 
+    on marine sediment core data for 0-800 ka <doi:10.5194/cp-12-1-2016>.
 License: MIT + file LICENSE
 Depends: R (>= 3.3.0)
 Encoding: UTF-8

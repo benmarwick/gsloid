@@ -4,7 +4,16 @@
 \name{LR04_MISboundaries}
 \alias{LR04_MISboundaries}
 \title{Marine isotope stages (MIS) boundaries.}
-\format{An object of class \code{data.frame} with 232 rows and 7 columns.}
+\format{A data frame with 232 rows and 7 variables:
+\describe{
+  \item{MIS_Boundary}{Marine isotope stage boundary}
+  \item{start_MIS}{start of this phase}
+  \item{end_MIS}{end of this phase}
+  \item{label_MIS}{short version of 'end_MIS' suitable for annotating plots}
+  \item{LR04_Age_ka_start}{Age of start of MIS, x 1000 years ago}
+  \item{LR04_Age_ka_end}{Age of end of MIS, x 1000 years ago}
+  \item{LR04_Age_ka_mid}{Age of middle of MIS, x 1000 years ago, suitable for controlling label placement on plots}
+}}
 \source{
 \url{http://www.lorraine-lisiecki.com/LR04_MISboundaries.txt}
 }
@@ -13,12 +22,5 @@ LR04_MISboundaries
 }
 \description{
 From http://www.lorraine-lisiecki.com/LR04_MISboundaries.txt
-}
-\details{
-@format A data frame with 232 rows and 2 variables:
-\describe{
-  \item{MIS_Boundary}{Marine isotope stage boundary}
-  \item{LR04_Age_ka}{x 1000 years ago}
-  }
 }
 \keyword{datasets}

@@ -179,7 +179,7 @@ ggplot() +
   theme_bw()
 ```
 
-Maybe we want the MIS regions by themselves so we can plot some other time series besides the ones includes here. We need to adjust the `y` values in the `annotate()` function to ensure that the MIS labels show in a readble way. Here I show an imaginary variable that might have a maximum value of about 10. So I adjust the  `y` values in the `annotate()` function to position the MIS labels just below 10 on the y axis. 
+In some cases we might want the MIS regions by themselves so we can plot some other time series besides the ones included here. The key here is to adjust the `y` values in the `annotate()` function to ensure that the MIS labels show in a readable way. Here I show an imaginary variable that might have a maximum value of about 10. So I adjust the `y` values in the `annotate()` function so that the position of the MIS labels just below 10 on the y axis. 
 
 
 ```{r}
@@ -195,9 +195,9 @@ ggplot() +
   annotate("text", 
            label = mis_last_250ka$label, 
            x =     mis_last_250ka$mid,
-           y = c(rep(9, 4), 
-                 seq(8.1, 9.9, length.out = 5),
-                 rep(9, 3)),
+           y = c(rep(9, 4),                       #  I want the MIS labels to be located
+                 seq(8.1, 9.9, length.out = 5),   #  between 8.1 and 9.9 on the y-axis, to
+                 rep(9, 3)),                      #  fit well with an imaginary max of 10
            size = 3) +
   scale_x_continuous(limits = c(0, 250),
                      name = "x 1000 years ago") +
