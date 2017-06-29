@@ -119,8 +119,7 @@ ggplot() +
            size = 3) +
   geom_line(data = lisiecki2005,                # add d18O line
             aes(Time,
-                d18O),
-            size = 0.75) +  
+                d18O)) +  
   scale_x_continuous(limits = c(0, 250),
                      name = "x 1000 years ago") +
   scale_y_reverse(name = bquote(delta^18*O)) +
@@ -149,8 +148,7 @@ ggplot() +
            size = 3) +
   geom_line(data = lisiecki2005,                # add d18O line
             aes(Time,
-                d18O),
-            size = 0.75) +  
+                d18O)) +  
   scale_x_continuous(limits = c(0, 250),
                      name = "x 1000 years ago") +
   scale_y_reverse(name = bquote(delta^18*O)) +
@@ -180,8 +178,7 @@ ggplot() +
            size = 3) +
   geom_line(data = lisiecki2005,                # add d18O line
             aes(Time,
-                d18O),
-            size = 0.75) +  
+                d18O)) +  
   scale_x_continuous(limits = c(0, 250),
                      name = "x 1000 years ago") +
   scale_y_reverse(name = bquote(delta^18*O)) +
