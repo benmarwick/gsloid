@@ -35,7 +35,9 @@ references <- data.frame(Dataset = c("lisiecki2005", "spratt2016"),
 knitr::kable(references)
 ```
 
-Here's the structure of the main datasets:
+You **must** cite those sources in the table above if you use the data in this package. 
+
+Here's the structure of the main data sets:
 
 ```{r}
 library(gsloid)
@@ -51,7 +53,7 @@ Detailed descriptions of the variables are avaliable in the data documentation, 
 
 ## Usage
 
-Atlhough these data are suitable for many kinds of analyses, the primary reason that I made this package is so I can make my own plots of these data without having to copy a plot from another publication. Here's how I typically start with plotting the oxygen isotope data. I have set limits on the x-axis so it only shows 0-250 ka because that's what I'm interested in:
+Atlhough these data are suitable for many kinds of analyses, the primary reason that I made this package is so I can easily make my own plots of these data. Here's how I typically start with plotting the oxygen isotope data. I have set limits on the x-axis so it only shows 0-250 ka because that's what I'm interested in:
 
 ```{r}
 library(ggplot2)
@@ -80,9 +82,9 @@ ggplot(spratt2016,
   theme_bw()
 ```
 
-Often we want to see the Marine istope stages on these plots also. This package includes the dataset `LR04_MISboundaries` of start and end dates for each stage, so we can draw these stages easily. 
+Often we want to see the Marine istope stages on these plots also. This package includes the dataset `LR04_MISboundaries` of start and end dates for each stage, so we can draw these stages easily. I obtained these data from Lorraine Lisiecki's web page: <http://lorraine-lisiecki.com/LR04_MISboundaries.txt>
 
-Some care is required to get the MIS numbers positions in an easy-to-read location. Here I use `rep()` and `seq()` to help position the numbers. 
+Some care is required to get the MIS numbers positions in easy-to-read locations. Here I use `rep()` and `seq()` to help position the numbers. 
 
 ```{r}
 # subset the MIS data for the last 250 ka years
