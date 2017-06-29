@@ -80,6 +80,20 @@
 #'   ...
 #' }
 #' @source \url{ftp://ftp.ncdc.noaa.gov/pub/data/paleo/contributions_by_author/lisiecki2005/lisiecki2005.txt}
+#' @examples
+#' names(lisiecki2005)
+#' head(lisiecki2005)
+#' # plot for 0-250 ka:
+#' if (require("ggplot2")) {
+#'    ggplot(lisiecki2005,
+#'           aes(Time,
+#'               d18O)) +
+#'      geom_line() +
+#'      scale_x_continuous(limits = c(0, 250),
+#'                         name = "x 1000 years ago") +
+#'      scale_y_reverse(name = bquote(delta^18*O)) +
+#'      theme_bw()
+#'    }
 "lisiecki2005"
 
 
@@ -168,6 +182,12 @@
 #'   ...
 #' }
 #' @source \url{https://www.ncdc.noaa.gov/paleo-search/study/19982}
+#'
+#' @examples
+#' names(spratt2016)
+#' head(spratt2016)
+#'
+#'
 "spratt2016"
 
 
@@ -187,5 +207,11 @@
 #'   \item{LR04_Age_ka_mid}{Age of middle of MIS, x 1000 years ago, suitable for controlling label placement on plots}
 #' }
 #' @source \url{http://www.lorraine-lisiecki.com/LR04_MISboundaries.txt}
+#'
+#' @examples
+#' names(LR04_MISboundaries)
+#' head(LR04_MISboundaries)
+#' # subset the MIS data for the last 250 ka years
+#' mis_last_250ka <- LR04_MISboundaries[LR04_MISboundaries$LR04_Age_ka_start <= 250, ]
 "LR04_MISboundaries"
 

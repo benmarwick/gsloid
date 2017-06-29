@@ -14,4 +14,10 @@ spratt2016
 \description{
 This is a Late Pleistocene sea level stack based on marine sediment core data (foraminiferal carbonate d18O) as estimated by several different techniques in seven different studies. Obtained from https://www.ncdc.noaa.gov/paleo-search/study/19982 on 28 June 2017
 }
+\examples{
+names(spratt2016)
+head(spratt2016)
+
+
+}
 \keyword{datasets}

@@ -3,6 +3,52 @@
 * ubuntu 12.04 (on rhub), R 3.4.0
 * win-builder (devel and release)
 
+
+29 June 2017
+
+Submitted, rejected, because:
+
+#--
+
+Thanks, we see:
+
+* checking examples ... NONE
+
+Can you some examples, e.g. how to look appropriately add the data?
+
+Best,
+Uwe Ligges
+#---
+
+So, 3 examples now added for each data set, in data.R
+
+rhub::check(platform = rhub::platforms()$name, show_status = FALSE) reports...
+
+OK
+
+devtools::build_win() reports...
+
+* checking CRAN incoming feasibility ... NOTE
+Maintainer: 'Ben Marwick <benmarwick@gmail.com>'
+
+New submission
+
+Possibly mis-spelled words in DESCRIPTION:
+  Myr (11:11)
+  benthic (10:54)
+  ka (12:44)
+
+devtools::check() reports...
+
+R CMD check results
+0 errors | 0 warnings | 0 notes
+
+R CMD check succeeded
+
+
+
+
+-----
 29 June 2017
 
 Submitted, rejected, because:

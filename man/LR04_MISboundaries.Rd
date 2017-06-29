@@ -23,4 +23,10 @@ LR04_MISboundaries
 \description{
 From http://www.lorraine-lisiecki.com/LR04_MISboundaries.txt
 }
+\examples{
+names(LR04_MISboundaries)
+head(LR04_MISboundaries)
+# subset the MIS data for the last 250 ka years
+mis_last_250ka <- LR04_MISboundaries[LR04_MISboundaries$LR04_Age_ka_start <= 250, ]
+}
 \keyword{datasets}
