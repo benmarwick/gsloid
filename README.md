@@ -3,14 +3,20 @@
 gsloid: global sea level and oxygen isotope data
 ================================================
 
-[![Travis-CI Build Status](https://travis-ci.org/benmarwick/gsloid.png?branch=master)](https://travis-ci.org/benmarwick/gsloid)
+[![Travis-CI Build Status](https://travis-ci.org/benmarwick/gsloid.png?branch=master)](https://travis-ci.org/benmarwick/gsloid) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/gsloid)](https://cran.r-project.org/package=gsloid) ![CRAN\_Downloads\_Badge](http://cranlogs.r-pkg.org/badges/gsloid)
 
 The goal of gsloid is to make available raw data for sea level curves and *δ*<sup>18</sup>O curves for the Holocene and most of the Pleistocene.
 
 Installation
 ------------
 
-You can install gsloid from github with:
+You can install gsloid from CRAN with:
+
+``` r
+inistall.pacakges("gsloid")
+```
+
+Or you can install the development version of gsloid from github with:
 
 ``` r
 # install.packages("devtools")

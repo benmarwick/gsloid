@@ -18,13 +18,21 @@ knitr::opts_chunk$set(
 
 
 [![Travis-CI Build Status](https://travis-ci.org/benmarwick/gsloid.png?branch=master)](https://travis-ci.org/benmarwick/gsloid) 
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/gsloid)](https://cran.r-project.org/package=gsloid)
+![CRAN_Downloads_Badge](http://cranlogs.r-pkg.org/badges/gsloid)
 
 
 The goal of gsloid is to make available raw data for sea level curves and $\delta$^18^O curves for the Holocene and most of the Pleistocene. 
 
 ## Installation
 
-You can install gsloid from github with:
+You can install gsloid from CRAN with:
+
+```{r cran-installation, eval = FALSE}
+inistall.pacakges("gsloid")
+```
+
+Or you can install the development version of gsloid from github with:
 
 ```{r gh-installation, eval = FALSE}
 # install.packages("devtools")
