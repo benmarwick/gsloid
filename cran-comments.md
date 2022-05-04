@@ -1,7 +1,42 @@
+
+
+
+3 May 2022
+
+K. Hornick writes "Please see the problems shown on <https://cran.r-project.org/web/checks/check_results_gsloid.html>. Please correct before 2022-05-08 to safely retain your package on CRAN. Note that this will be the *final* reminder."
+
+BM: updated some of the roxygen to escape the %, no obvious issue with Vignette title (despite the note from CRAN that alerted KH), using rhub::check_for_cran() and cran_summary(), here is the output:
+
+####
 ## Test environments
-* local OS X install, R 3.4.0
-* ubuntu 12.04 (on rhub), R 3.4.0
-* win-builder (devel and release)
+- R-hub windows-x86_64-devel (r-devel)
+- R-hub ubuntu-gcc-release (r-release)
+- R-hub fedora-clang-devel (r-devel)
+
+## R CMD check results
+> On windows-x86_64-devel (r-devel), ubuntu-gcc-release (r-release), fedora-clang-devel (r-devel)
+  checking CRAN incoming feasibility ... NOTE
+  Maintainer: 'Ben Marwick <benmarwick@gmail.com>'
+  
+  Found the following (possibly) invalid DOIs:
+    DOI: 10.1029/2004PA001071
+      From: DESCRIPTION
+      Status: Service Unavailable
+      Message: 503
+
+> On windows-x86_64-devel (r-devel)
+  checking for detritus in the temp directory ... NOTE
+  Found the following files/directories:
+    'lastMiKTeXException'
+
+0 errors ✓ | 0 warnings ✓ | 2 notes x
+####
+
+Note on DOI is spurious, since doi.org/10.1029/2004PA001071 resolves in the browser just fine
+Note on lastMiKTeXException is an rhub issue: https://github.com/r-hub/rhub/issues/503
+
+
+
 
 
 29 June 2017
@@ -19,6 +54,10 @@ Can you some examples, e.g. how to look appropriately add the data?
 Best,
 Uwe Ligges
 #---
+## Test environments
+* local OS X install, R 3.4.0
+* ubuntu 12.04 (on rhub), R 3.4.0
+* win-builder (devel and release)
 
 So, 3 examples now added for each data set, in data.R
 

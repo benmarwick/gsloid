@@ -1,12 +1,12 @@
 ---
-title: "Introduction"
+title: "Introduction to the gsloid package"
 author: "Ben Marwick"
 date: "`r Sys.Date()`"
 output:
       rmarkdown::html_vignette:
         fig_caption: yes
 vignette: >
-  %\VignetteIndexEntry{Introduction}
+  %\VignetteIndexEntry{Introduction to the gsloid package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -87,7 +87,7 @@ ggplot(spratt2016,
   theme_bw()
 ```
 
-Often we want to see the Marine istope stages on these plots also. This package includes the dataset `LR04_MISboundaries` of start and end dates for each stage, so we can draw these stages easily. I obtained these data from Lorraine Lisiecki's web page: <http://lorraine-lisiecki.com/LR04_MISboundaries.txt>
+Often we want to see the Marine isotope stages on these plots also. This package includes the dataset `LR04_MISboundaries` of start and end dates for each stage, so we can draw these stages easily. I obtained these data from Lorraine Lisiecki's web page: <http://lorraine-lisiecki.com/LR04_MISboundaries.txt>
 
 Some care is required to get the MIS numbers positions in easy-to-read locations. Here I use `rep()` and `seq()` to help position the numbers. 
 
