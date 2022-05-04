@@ -1,5 +1,11 @@
+4 May 2022
 
+CRAN emails to me: "package gsloid_0.2.0.tar.gz does not pass the incoming checks automatically, please see the following pre-tests:
+Windows: <https://win-builder.r-project.org/incoming_pretest/gsloid_0.2.0_20220504_070803/Windows/00check.log> Status: 2 NOTEs; Debian: <https://win-builder.r-project.org/incoming_pretest/gsloid_0.2.0_20220504_070803/Debian/00check.log>; Status: 3 NOTEs"
 
+BM: I cannot reproduce the NOTE Package vignette with placeholder title 'Vignette Title': 'Introduction.Rmd' on rhub or locally. 
+
+BM: NOTES about links and DOIs are spurious, they resolve after a tiny delay.
 
 3 May 2022
 
