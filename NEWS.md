@@ -1,3 +1,8 @@
+# gsloid 0.2 (2022-05-08)
+=========================
+
+* Responded to an email from CRAN about a NOTE on the CONDUCT.md 
+
 # gsloid 0.2 (2022-05-03)
 =========================
 

@@ -1,3 +1,19 @@
+8 May 2022
+
+Uwe Ligges emails to me: "Found the following (possibly) invalid file URI: CONDUCT.md From: README.md"
+
+BM: I changed the URI to a full URL to the GitHub repo for the pkg. On rhub::check_for_cran() & devtools::check_win_devel() I got these spurious notes:
+
+Found the following (possibly) invalid DOIs:
+  DOI: 10.1029/2004PA001071
+    From: DESCRIPTION
+    Status: Service Unavailable
+    Message: 503
+* checking for detritus in the temp directory ... NOTE
+Found the following files/directories:
+  'lastMiKTeXException'
+
+
 4 May 2022
 
 CRAN emails to me: "package gsloid_0.2.0.tar.gz does not pass the incoming checks automatically, please see the following pre-tests:
