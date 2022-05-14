@@ -1,14 +1,19 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-gsloid: global sea level and oxygen isotope data
-================================================
 
-[![Travis-CI Build Status](https://travis-ci.org/benmarwick/gsloid.png?branch=master)](https://travis-ci.org/benmarwick/gsloid) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/gsloid)](https://cran.r-project.org/package=gsloid) ![CRAN\_Downloads\_Badge](http://cranlogs.r-pkg.org/badges/gsloid)
+# gsloid: global sea level and oxygen isotope data
 
-The goal of gsloid is to make available raw data for sea level curves and *δ*<sup>18</sup>O curves for the Holocene and most of the Pleistocene.
+[![Travis-CI Build
+Status](https://travis-ci.org/benmarwick/gsloid.png?branch=master)](https://travis-ci.org/benmarwick/gsloid)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/gsloid)](https://cran.r-project.org/package=gsloid)
+![CRAN_Downloads_Badge](http://cranlogs.r-pkg.org/badges/gsloid)
 
-Installation
-------------
+The goal of gsloid is to make available raw data for sea level curves
+and
+![\delta](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cdelta "\delta")<sup>18</sup>O
+curves for the Holocene and most of the Pleistocene.
+
+## Installation
 
 You can install gsloid from CRAN with:
 
@@ -23,25 +28,27 @@ Or you can install the development version of gsloid from github with:
 devtools::install_github("benmarwick/gsloid")
 ```
 
-Overview
---------
+## Overview
 
-This package includes commonly used datasets in palaeoecology and archaeology:
+This package includes commonly used datasets in palaeoecology and
+archaeology:
 
 -   Global sea level curve
 -   Global oxygen isotope curve
 -   Boundary ages for Marine Isotope Stages
 
-There are many possible sources for these kinds of data, this package includes data from:
+There are many possible sources for these kinds of data, this package
+includes data from:
 
 | Dataset      | Source                                                                                                                                                                                       |
 |:-------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | lisiecki2005 | Lisiecki, L.E. and M.E. Raymo. 2005. A Pliocene-Pleistocene stack of 57 globally distributed benthic D18O records. Paleoceanography, Vol. 20, PA1003, <https://doi.org/10.1029/2004PA001071> |
 | spratt2016   | Spratt, Rachel M. and Lorraine E. Lisiecki 2016. A Late Pleistocene sea level stack. Climate of the Past. Vol. 12, 1079-1092, <https://doi.org/10.5194/cp-12-1-2016>                         |
 
-You **must** cite those sources in the table above if you use the data in this package.
+You **must** cite those sources in the table above if you use the data
+in this package.
 
-Here's the structure of the main data sets:
+Here’s the structure of the main data sets:
 
 ``` r
 library(gsloid)
@@ -78,12 +85,17 @@ str(LR04_MISboundaries)
 #>  $ LR04_Age_ka_mid  : num  7 21.5 43 64 76.5 ...
 ```
 
-Detailed descriptions of the variables are avaliable in the data documentation, run `?lisiecki2005`, `?spratt2016` and `?LR04_MISboundaries` for more information.
+Detailed descriptions of the variables are avaliable in the data
+documentation, run `?lisiecki2005`, `?spratt2016` and
+`?LR04_MISboundaries` for more information.
 
-Usage
------
+## Usage
 
-Atlhough these data are suitable for many kinds of analyses, the primary reason that I made this package is so I can easily make my own plots of these data. Here's how I typically start with plotting the oxygen isotope data. I have set limits on the x-axis so it only shows 0-250 ka because that's what I'm interested in:
+Atlhough these data are suitable for many kinds of analyses, the primary
+reason that I made this package is so I can easily make my own plots of
+these data. Here’s how I typically start with plotting the oxygen
+isotope data. I have set limits on the x-axis so it only shows 0-250 ka
+because that’s what I’m interested in:
 
 ``` r
 library(ggplot2)
@@ -99,9 +111,9 @@ ggplot(lisiecki2005,
   theme_bw()
 ```
 
-![](vignettes/figures/README-unnamed-chunk-6-1.png)
+![](vignettes/figures/README-unnamed-chunk-6-1.png)<!-- -->
 
-And here's how I start to plot the sea level data:
+And here’s how I start to plot the sea level data:
 
 ``` r
 ggplot(spratt2016, 
@@ -114,11 +126,16 @@ ggplot(spratt2016,
   theme_bw()
 ```
 
-![](vignettes/figures/README-unnamed-chunk-7-1.png)
+![](vignettes/figures/README-unnamed-chunk-7-1.png)<!-- -->
 
-Often we want to see the Marine istope stages on these plots also. This package includes the dataset `LR04_MISboundaries` of start and end dates for each stage, so we can draw these stages easily. I obtained these data from Lorraine Lisiecki's web page: <http://lorraine-lisiecki.com/LR04_MISboundaries.txt>
+Often we want to see the Marine istope stages on these plots also. This
+package includes the dataset `LR04_MISboundaries` of start and end dates
+for each stage, so we can draw these stages easily. I obtained these
+data from Lorraine Lisiecki’s web page:
+<http://lorraine-lisiecki.com/LR04_MISboundaries.txt>
 
-Some care is required to get the MIS numbers positions in easy-to-read locations. Here I use `rep()` and `seq()` to help position the numbers.
+Some care is required to get the MIS numbers positions in easy-to-read
+locations. Here I use `rep()` and `seq()` to help position the numbers.
 
 ``` r
 # subset the MIS data for the last 250 ka years
@@ -145,9 +162,11 @@ ggplot() +
   theme_bw()
 ```
 
-![](vignettes/figures/README-unnamed-chunk-8-1.png)
+![](vignettes/figures/README-unnamed-chunk-8-1.png)<!-- -->
 
-Sometimes we prefer to indicate the MIS by horizontal lines. Once again we have to carefully place the line segments and labels so they are clear to read:
+Sometimes we prefer to indicate the MIS by horizontal lines. Once again
+we have to carefully place the line segments and labels so they are
+clear to read:
 
 ``` r
 ggplot() +
@@ -174,7 +193,7 @@ ggplot() +
   theme_bw()
 ```
 
-![](vignettes/figures/README-unnamed-chunk-9-1.png)
+![](vignettes/figures/README-unnamed-chunk-9-1.png)<!-- -->
 
 And sometimes we might want shaded rectangles to indicate the MIS:
 
@@ -204,9 +223,15 @@ ggplot() +
   theme_bw()
 ```
 
-![](vignettes/figures/README-unnamed-chunk-10-1.png)
+![](vignettes/figures/README-unnamed-chunk-10-1.png)<!-- -->
 
-Maybe we want the MIS regions by themselves so we can plot some other time series besides the ones includes here. We need to adjust the `y` values in the `annotate()` function to ensure that the MIS labels show in a readble way. Here I show an imaginary variable that might have a maximum value of about 10. So I adjust the `y` values in the `annotate()` function to position the MIS labels just below 10 on the y axis.
+Maybe we want the MIS regions by themselves so we can plot some other
+time series besides the ones includes here. We need to adjust the `y`
+values in the `annotate()` function to ensure that the MIS labels show
+in a readble way. Here I show an imaginary variable that might have a
+maximum value of about 10. So I adjust the `y` values in the
+`annotate()` function to position the MIS labels just below 10 on the y
+axis.
 
 ``` r
 ggplot() +
@@ -233,6 +258,8 @@ ggplot() +
   theme_bw()
 ```
 
-![](vignettes/figures/README-unnamed-chunk-11-1.png)
+![](vignettes/figures/README-unnamed-chunk-11-1.png)<!-- -->
 
-Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+Please note that this project is released with a [Contributor Code of
+Conduct](https://github.com/benmarwick/gsloid/blob/master/CONDUCT.md).
+By participating in this project you agree to abide by its terms.
