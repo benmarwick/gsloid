@@ -3,8 +3,6 @@
 
 # gsloid: global sea level and oxygen isotope data
 
-[![Travis-CI Build
-Status](https://travis-ci.org/benmarwick/gsloid.png?branch=master)](https://travis-ci.org/benmarwick/gsloid)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/gsloid)](https://cran.r-project.org/package=gsloid)
 ![CRAN_Downloads_Badge](http://cranlogs.r-pkg.org/badges/gsloid)
 
@@ -18,7 +16,7 @@ curves for the Holocene and most of the Pleistocene.
 You can install gsloid from CRAN with:
 
 ``` r
-inistall.pacakges("gsloid")
+install.packages("gsloid")
 ```
 
 Or you can install the development version of gsloid from github with:
